@@ -24,7 +24,7 @@ module Pricey
       @result = {:title => title, :price => price, :link => @url, :retailer => "Amazon"}
     end
 
-    def create_url(asin)
+    def self.create_url(asin)
       "https://www.amazon.com/dp/#{asin}/"
     end
   end
@@ -39,7 +39,7 @@ module Pricey
     attr_reader :url, :results
 
     def initialize(search_term)
-      @url = create_url search_term
+      @url = EbayAgent.create_url search_term
       @results = []
     end
 
@@ -61,7 +61,7 @@ module Pricey
       @results
     end
 
-    def create_url(search_term)
+    def self.create_url(search_term)
       "https://www.ebay.com/sch/i.html?_from=R40&_trksid=m570.l1313&_nkw=#{CGI.escape search_term}&_sacat=0"
     end
   end
@@ -74,7 +74,7 @@ module Pricey
     attr_reader :url, :results
 
     def initialize(search_term)
-      @url = create_url search_term
+      @url = FlipkartAgent.create_url search_term
       @results = []
     end
 
@@ -100,7 +100,7 @@ module Pricey
       end
     end
 
-    def create_url(search_term)
+    def self.create_url(search_term)
       "https://www.flipkart.com/search?q=#{CGI.escape search_term}&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off"
     end
   end

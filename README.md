@@ -1,8 +1,6 @@
 # PriceAgent
 
-Welcome to your new agent gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/huginn_price_agent`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Scrape ecommerce websites for the lowest prices. 
 
 ## Installation
 
@@ -18,11 +16,11 @@ ADDITIONAL_GEMS=huginn_price_agent
 
 And then execute:
 
-    $ bundle
+  $ bundle
 
 ## Usage
 
-TODO: Write usage instructions here
+TODO: Usage instructions here
 
 ## Development
 

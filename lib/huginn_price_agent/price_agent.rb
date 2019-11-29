@@ -132,7 +132,7 @@ end
 module Agents
   require "/home/neville/dev/uon-cs/ai/pricey-require/pricey"
 
-  class ProductSearchAgent < Agent
+  class PriceAgent < Agent
     description <<-MD
       Search for a product across various websites to get the lowest price. 
       Note: to search for a product in Amazon, you need the ASIN number.

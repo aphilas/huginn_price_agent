@@ -1,4 +1,3 @@
-
 # runs when require 'pricey' is run
 module Pricey
   require 'nokogiri'

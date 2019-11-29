@@ -24,7 +24,7 @@ module Pricey
       @result = {:title => title, :price => price, :link => @url, :retailer => "Amazon"}
     end
 
-    def self.create_url(asin)
+    def create_url(asin)
       "https://www.amazon.com/dp/#{asin}/"
     end
   end
@@ -34,21 +34,19 @@ module Pricey
   # aima_amazon = AmazonAgent.new code
   # puts aima_amazon.get_product
 
-  class ScrapingAgent
+  # get item by searching
+  class EbayAgent
     attr_reader :url, :results
 
     def initialize(search_term)
-      @url = self.class.create_url search_term
+      @url = create_url search_term
       @results = []
     end
 
     def parse_page
       Nokogiri::HTML(HTTParty.get(@url))
     end
-  end
 
-  # get item by searching
-  class EbayAgent < ScrapingAgent
     def get_products
       parsed_page = parse_page
       titles = parsed_page.css('.s-item__title').map{|title| title.text.strip}
@@ -63,7 +61,7 @@ module Pricey
       @results
     end
 
-    def self.create_url(search_term)
+    def create_url(search_term)
       "https://www.ebay.com/sch/i.html?_from=R40&_trksid=m570.l1313&_nkw=#{CGI.escape search_term}&_sacat=0"
     end
   end
@@ -72,7 +70,18 @@ module Pricey
   # puts aima_ebay.get_products
   # puts aima_ebay.results
 
-  class FlipkartAgent < ScrapingAgent
+  class FlipkartAgent
+    attr_reader :url, :results
+
+    def initialize(search_term)
+      @url = create_url search_term
+      @results = []
+    end
+
+    def parse_page
+      Nokogiri::HTML(HTTParty.get(@url))
+    end
+
     def get_products
       parsed_page = parse_page
       # rows = parsed_page.css('div._3O0U0u')
@@ -91,7 +100,7 @@ module Pricey
       end
     end
 
-    def self.create_url(search_term)
+    def create_url(search_term)
       "https://www.flipkart.com/search?q=#{CGI.escape search_term}&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=on&as=off"
     end
   end

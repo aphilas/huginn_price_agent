@@ -1,4 +1,3 @@
-# runs when require 'pricey' is run
 module Pricey
   require 'nokogiri'
   require 'httparty'
@@ -29,12 +28,6 @@ module Pricey
     end
   end
 
-  # a-size-medium a-color-price
-  # code = "9332543518"
-  # aima_amazon = AmazonAgent.new code
-  # puts aima_amazon.get_product
-
-  # get item by searching
   class EbayAgent
     attr_reader :url, :results
 
@@ -65,10 +58,6 @@ module Pricey
       "https://www.ebay.com/sch/i.html?_from=R40&_trksid=m570.l1313&_nkw=#{CGI.escape search_term}&_sacat=0"
     end
   end
-
-  # aima_ebay = EbayAgent.new $aima
-  # puts aima_ebay.get_products
-  # puts aima_ebay.results
 
   class FlipkartAgent
     attr_reader :url, :results
@@ -105,11 +94,7 @@ module Pricey
     end
   end
 
-  # aima_flipkart = FlipkartAgent.new $aima
-  # aima_flipkart.get_products
-  # puts aima_flipkart.results
-
-  class PriceyScraper
+  class ScrapingAgent
     attr_reader :results, :keyword
 
     def initialize(keyword, search_amazon = nil, asin = nil)
@@ -139,8 +124,6 @@ module Pricey
 end
 
 module Agents
-  require "/home/neville/dev/uon-cs/ai/pricey-require/pricey"
-
   class PriceAgent < Agent
     description <<-MD
       Search for a product across various websites to get the lowest price. 
